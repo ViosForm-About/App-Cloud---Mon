@@ -66,14 +66,14 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// Serve static files from client in production
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/public')));
-    
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/public', 'index.html'));
+// Root route for testing
+app.get('/', (req, res) => {
+    res.json({
+        success: true,
+        message: 'CloudMon Server is running!',
+        timestamp: new Date().toISOString()
     });
-}
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -86,11 +86,11 @@ app.use((err, req, res, next) => {
     });
 });
 
-// 404 handler
-app.use('*', (req, res) => {
+// 404 handler for API routes
+app.use('/api/*', (req, res) => {
     res.status(404).json({
         success: false,
-        message: 'Endpoint tidak ditemukan'
+        message: 'Endpoint API tidak ditemukan'
     });
 });
 
