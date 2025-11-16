@@ -23,16 +23,5 @@
       "src": "/(.*)",
       "dest": "/client/public/index.html"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production",
-    "MONGODB_URI": "@cloudmon_mongodb_uri",
-    "JWT_SECRET": "@cloudmon_jwt_secret",
-    "JWT_EXPIRE": "30d",
-    "CLIENT_URL": "https://your-domain.vercel.app",
-    "CLOUDMON_URL": "https://cloudmon.com",
-    "UPLOAD_LIMIT": "10485760",
-    "TELEGRAM_SUPPORT_URL": "https://t.me/cloudmon_support",
-    "TELEGRAM_PREMIUM_URL": "https://t.me/cloudmon_premium"
-  }
+  ]
 }
