@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - CloudMon</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Memuat CloudMon...</p>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="menu-toggle" id="sidebarToggle">
+                <span>☰</span>
+            </div>
+            <h2>CloudMon</h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="/" class="nav-link" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
+                <li><a href="/settings.html" class="nav-link" data-page="settings"><span class="icon">⚙️</span> Settings</a></li>
+                <li><a href="/support.html" class="nav-link active" data-page="support"><span class="icon">💬</span> Support</a></li>
+                <li id="logoutItem"><a href="#" id="logoutLink"><span class="icon">🚪</span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-toggle" id="mainMenuToggle">
+                <span>☰</span>
+            </div>
+            <div class="logo">
+                <a href="/">CloudMon</a>
+            </div>
+            <div class="user-info" id="userInfo">
+                <div class="user-avatar" id="userAvatar">
+                    <div class="avatar-placeholder">U</div>
+                    <img src="" alt="Avatar" class="avatar-image hidden">
+                </div>
+                <span id="userName">User</span>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="/settings.html" class="dropdown-item">⚙️ Settings</a>
+                    <a href="#" id="dropdownLogout" class="dropdown-item">🚪 Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Support Content -->
+        <section class="support-content">
+            <div class="page-header">
+                <h1>Dukungan & Bantuan</h1>
+                <p>Kami siap membantu Anda 24/7</p>
+            </div>
+
+            <div class="support-grid">
+                <!-- Contact Support -->
+                <div class="support-card primary">
+                    <div class="support-icon">💬</div>
+                    <h3>Support Langsung</h3>
+                    <p>Hubungi tim support kami melalui Telegram untuk bantuan langsung dan cepat</p>
+                    <a href="https://t.me/cloudmon_support" class="btn btn-telegram" target="_blank">
+                        💬 Chat di Telegram
+                    </a>
+                    <small>Rata-rata respon: 5 menit</small>
+                </div>
+
+                <!-- Premium Support -->
+                <div class="support-card premium">
+                    <div class="support-icon">⭐</div>
+                    <h3>Premium Support</h3>
+                    <p>Khusus user premium - prioritas tinggi dan bantuan teknis mendalam</p>
+                    <a href="https://t.me/cloudmon_premium" class="btn btn-premium" target="_blank">
+                        ⭐ Premium Support
+                    </a>
+                    <small>Respon instan 24/7</small>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="support-card">
+                    <div class="support-icon">❓</div>
+                    <h3>Pertanyaan Umum</h3>
+                    <div class="faq-list">
+                        <details class="faq-item">
+                            <summary>Apa itu CloudMon?</summary>
+                            <p>CloudMon adalah layanan hosting file yang memungkinkan Anda mengubah file apa pun menjadi URL yang dapat dibagikan.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Berapa besar file yang bisa diupload?</summary>
+                            <p>Free: maksimal 10MB per file. Premium: maksimal 50MB per file.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Berapa lama file saya tersimpan?</summary>
+                            <p>Free: 30 hari. Premium: 1 tahun.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>Bagaimana cara upgrade ke premium?</summary>
+                            <p>Hubungi admin di Telegram @cloudmon_premium dengan menyertakan User ID Anda.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="support-card">
+                    <div class="support-icon">📧</div>
+                    <h3>Informasi Kontak</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Telegram Support:</strong>
+                            <a href="https://t.me/cloudmon_support" target="_blank">@cloudmon_support</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Telegram Premium:</strong>
+                            <a href="https://t.me/cloudmon_premium" target="_blank">@cloudmon_premium</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:support@cloudmon.com">support@cloudmon.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Jam Operasional:</strong>
+                            <span>24/7 untuk premium, 08:00-22:00 untuk free</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="support-card">
+                    <div class="support-icon">📊</div>
+                    <h3>Status Sistem</h3>
+                    <div class="status-list">
+                        <div class="status-item online">
+                            <span class="status-dot"></span>
+                            <span>API Server: Online</span>
+                        </div>
+                        <div class="status-item online">
+                            <span class="status-dot"></span>
+                            <span>Database: Online</span>
+                        </div>
+                        <div class="status-item online">
+                            <span class="status-dot"></span>
+                            <span>File Storage: Online</span>
+                        </div>
+                        <div class="status-item online">
+                            <span class="status-dot"></span>
+                            <span>CDN: Online</span>
+                        </div>
+                    </div>
+                    <small>Terakhir diperiksa: <span id="statusTime">-</span></small>
+                </div>
+
+                <!-- Documentation -->
+                <div class="support-card">
+                    <div class="support-icon">📚</div>
+                    <h3>Dokumentasi</h3>
+                    <p>Pelajari lebih lanjut tentang fitur-fitur CloudMon</p>
+                    <div class="doc-links">
+                        <a href="/docs/getting-started.html" class="doc-link">🚀 Memulai</a>
+                        <a href="/docs/upload-guide.html" class="doc-link">📁 Panduan Upload</a>
+                        <a href="/docs/premium.html" class="doc-link">⭐ Fitur Premium</a>
+                        <a href="/docs/troubleshooting.html" class="doc-link">🔧 Pemecahan Masalah</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3>Butuh Bantuan Cepat?</h3>
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="copyUserIdBtn">
+                        📋 Salin User ID
+                    </button>
+                    <button class="btn btn-outline" id="testUploadBtn">
+                        🧪 Test Upload
+                    </button>
+                    <button class="btn btn-outline" id="clearCacheBtn">
+                        🗑️ Clear Cache
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script type="module" src="/support.js"></script>
+</body>
+</html>

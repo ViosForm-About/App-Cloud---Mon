@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - CloudMon</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+</head>
+<body class="auth-page">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Memuat CloudMon...</p>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <div class="logo-large">CloudMon</div>
+                <h1>Buat Akun Baru</h1>
+                <p>Daftar untuk mulai menggunakan CloudMon</p>
+            </div>
+
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="registerName">Nama Lengkap</label>
+                    <input type="text" id="registerName" class="form-control" placeholder="Masukkan nama lengkap" required minlength="2">
+                    <div class="error-message" id="nameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="form-control" placeholder="email@example.com" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Minimal 6 karakter" required minlength="6">
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Konfirmasi Password</label>
+                    <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Ulangi password" required>
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox">
+                        <input type="checkbox" id="acceptTerms" required>
+                        <span class="checkmark"></span>
+                        Saya menyetujui <a href="/terms.html" target="_blank">Syarat & Ketentuan</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large" id="registerBtn">
+                    <span class="btn-text">Daftar</span>
+                    <span class="btn-loading hidden">⏳</span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Sudah punya akun? <a href="/login.html">Masuk di sini</a></p>
+            </div>
+
+            <div class="auth-features">
+                <div class="feature">
+                    <span class="feature-icon">🚀</span>
+                    <span>Mulai dalam 30 detik</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🔒</span>
+                    <span>Data aman & terenkripsi</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">💯</span>
+                    <span>Gratis selamanya</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script type="module" src="/auth.js"></script>
+</body>
+</html>

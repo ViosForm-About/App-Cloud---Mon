@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan - CloudMon</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Memuat CloudMon...</p>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="menu-toggle" id="sidebarToggle">
+                <span>☰</span>
+            </div>
+            <h2>CloudMon</h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="/" class="nav-link" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
+                <li><a href="/settings.html" class="nav-link active" data-page="settings"><span class="icon">⚙️</span> Settings</a></li>
+                <li><a href="/support.html" class="nav-link" data-page="support"><span class="icon">💬</span> Support</a></li>
+                <li id="logoutItem"><a href="#" id="logoutLink"><span class="icon">🚪</span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-toggle" id="mainMenuToggle">
+                <span>☰</span>
+            </div>
+            <div class="logo">
+                <a href="/">CloudMon</a>
+            </div>
+            <div class="user-info" id="userInfo">
+                <div class="user-avatar" id="userAvatar">
+                    <div class="avatar-placeholder">U</div>
+                    <img src="" alt="Avatar" class="avatar-image hidden">
+                </div>
+                <span id="userName">User</span>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="/settings.html" class="dropdown-item">⚙️ Settings</a>
+                    <a href="#" id="dropdownLogout" class="dropdown-item">🚪 Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Settings Content -->
+        <section class="settings-content">
+            <div class="page-header">
+                <h1>Pengaturan Akun</h1>
+                <p>Kelola informasi akun dan preferensi Anda</p>
+            </div>
+
+            <div class="settings-grid">
+                <!-- Profile Settings -->
+                <div class="settings-card">
+                    <h3>Profil</h3>
+                    <div class="profile-section">
+                        <div class="avatar-upload-section">
+                            <div class="avatar-preview" id="avatarPreview">
+                                <div class="avatar-placeholder large" id="avatarPlaceholder">U</div>
+                                <img src="" alt="Avatar" class="avatar-image large hidden" id="avatarImage">
+                            </div>
+                            <div class="avatar-actions">
+                                <input type="file" id="avatarInput" class="avatar-input" accept="image/*">
+                                <label for="avatarInput" class="btn btn-outline">Ubah Foto</label>
+                                <button class="btn btn-text" id="removeAvatar">Hapus Foto</button>
+                                <div class="avatar-hint">
+                                    <small>Format: JPG, PNG, GIF. Maksimal 2MB.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="profileForm" class="profile-form">
+                            <div class="form-group">
+                                <label for="profileName">Nama Lengkap</label>
+                                <input type="text" id="profileName" class="form-control" required minlength="2" maxlength="50">
+                                <div class="error-message" id="nameError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profileEmail">Email</label>
+                                <input type="email" id="profileEmail" class="form-control" readonly>
+                                <small class="input-hint">Email tidak dapat diubah</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profileId">User ID</label>
+                                <input type="text" id="profileId" class="form-control" readonly>
+                                <small class="input-hint">ID unik untuk akun Anda</small>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" id="saveProfileBtn">
+                                <span class="btn-text">Simpan Perubahan</span>
+                                <span class="btn-loading hidden">⏳</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Account Info -->
+                <div class="settings-card">
+                    <h3>Informasi Akun</h3>
+                    <div class="account-info">
+                        <div class="info-item">
+                            <span class="info-label">Status Akun</span>
+                            <span class="info-value">
+                                <span class="status-badge" id="accountStatus">Free</span>
+                            </span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Bergabung Sejak</span>
+                            <span class="info-value" id="joinDate">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Login Terakhir</span>
+                            <span class="info-value" id="lastLogin">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Total File</span>
+                            <span class="info-value" id="totalFiles">0</span>
+                        </div>
+                    </div>
+
+                    <div class="storage-info">
+                        <h4>Penyimpanan</h4>
+                        <div class="storage-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="storageProgressFill"></div>
+                            </div>
+                            <div class="storage-stats">
+                                <span id="storageUsed">0 MB</span>
+                                <span id="storageTotal">1 GB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Upgrade -->
+                <div class="settings-card premium-card" id="premiumCard">
+                    <div class="premium-header">
+                        <h3>⭐ CloudMon Premium</h3>
+                        <span class="status-badge premium" id="premiumStatus">UPGRADE</span>
+                    </div>
+                    <div class="premium-features">
+                        <div class="feature">
+                            <span class="feature-icon">🔗</span>
+                            <div class="feature-text">
+                                <strong>URL Custom</strong>
+                                <small>Buat URL dengan nama custom</small>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">💾</span>
+                            <div class="feature-text">
+                                <strong>10GB Storage</strong>
+                                <small>Penyimpanan 10x lebih besar</small>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <div class="feature-text">
+                                <strong>Upload 50MB</strong>
+                                <small>File lebih besar, upload lebih cepat</small>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📅</span>
+                            <div class="feature-text">
+                                <strong>1 Tahun Masa Aktif</strong>
+                                <small>File aktif lebih lama</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="premium-actions">
+                        <button class="btn btn-premium" id="upgradePremiumBtn">
+                            Upgrade ke Premium - Rp 50.000/bulan
+                        </button>
+                        <small>Pembayaran via transfer bank atau e-wallet</small>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="settings-card danger-card">
+                    <h3>Zona Berbahaya</h3>
+                    <p class="danger-warning">
+                        Tindakan ini tidak dapat dibatalkan. Hanya lanjutkan jika Anda yakin.
+                    </p>
+                    <div class="danger-actions">
+                        <button class="btn btn-danger" id="deleteAccountBtn">
+                            Hapus Akun Permanent
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Premium Modal -->
+    <div id="premiumModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upgrade ke Premium</h3>
+                <button class="modal-close" id="closePremiumModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="premium-plans">
+                    <div class="plan-card premium featured">
+                        <div class="plan-badge">REKOMENDASI</div>
+                        <div class="plan-header">
+                            <h4>Premium Bulanan</h4>
+                            <div class="plan-price">Rp 50.000<span>/bulan</span></div>
+                        </div>
+                        <ul class="plan-features">
+                            <li>✅ URL Standar & Custom</li>
+                            <li>✅ Penyimpanan 10GB</li>
+                            <li>✅ File berlaku 1 tahun</li>
+                            <li>✅ Priority Support</li>
+                            <li>✅ Upload hingga 50MB</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="premium-instructions">
+                    <h4>Cara Upgrade:</h4>
+                    <ol>
+                        <li>Klik tombol "Hubungi di Telegram" di bawah</li>
+                        <li>Kirim User ID Anda: <strong id="modalUserId">-</strong></li>
+                        <li>Admin akan memberikan instruksi pembayaran</li>
+                        <li>Setelah pembayaran, premium akan diaktifkan</li>
+                    </ol>
+                </div>
+                <div class="premium-actions">
+                    <a href="https://t.me/cloudmon_premium" class="telegram-btn large" target="_blank" id="telegramPremiumLink">
+                        💬 Hubungi di Telegram
+                    </a>
+                    <small>Support tersedia 24/7</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div id="deleteAccountModal" class="modal hidden">
+        <div class="modal-content danger">
+            <div class="modal-header">
+                <h3>Hapus Akun Permanent</h3>
+                <button class="modal-close" id="closeDeleteModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="warning-icon">⚠️</div>
+                <h4>Apakah Anda yakin?</h4>
+                <p>Tindakan ini akan:</p>
+                <ul class="warning-list">
+                    <li>Menghapus semua file yang diunggah</li>
+                    <li>Menghapus semua URL yang dibuat</li>
+                    <li>Menghapus data akun secara permanent</li>
+                    <li><strong>Tidak dapat dibatalkan!</strong></li>
+                </ul>
+                <div class="confirmation-input">
+                    <label for="confirmDelete">Ketik "HAPUS" untuk konfirmasi:</label>
+                    <input type="text" id="confirmDelete" class="form-control" placeholder="HAPUS">
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="cancelDelete">Batal</button>
+                    <button class="btn btn-danger" id="confirmDeleteBtn" disabled>Hapus Permanent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CloudMon</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+    <meta name="theme-color" content="#4361ee">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Memuat CloudMon...</p>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="menu-toggle" id="sidebarToggle">
+                <span>☰</span>
+            </div>
+            <h2>CloudMon</h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="/" class="nav-link active" data-page="dashboard"><span class="icon">📊</span> Dashboard</a></li>
+                <li><a href="/settings.html" class="nav-link" data-page="settings"><span class="icon">⚙️</span> Settings</a></li>
+                <li><a href="/support.html" class="nav-link" data-page="support"><span class="icon">💬</span> Support</a></li>
+                <li id="logoutItem"><a href="#" id="logoutLink"><span class="icon">🚪</span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="menu-toggle" id="mainMenuToggle">
+                <span>☰</span>
+            </div>
+            <div class="logo">
+                <a href="/">CloudMon</a>
+            </div>
+            <div class="user-info" id="userInfo">
+                <div class="user-avatar" id="userAvatar">
+                    <div class="avatar-placeholder">U</div>
+                    <img src="" alt="Avatar" class="avatar-image hidden">
+                </div>
+                <span id="userName">User</span>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="/settings.html" class="dropdown-item">⚙️ Settings</a>
+                    <a href="#" id="dropdownLogout" class="dropdown-item">🚪 Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <section class="dashboard-content">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <div class="storage-info" id="storageInfo">
+                    <div class="storage-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="storageProgressFill"></div>
+                        </div>
+                        <span class="storage-text" id="storageText">0% digunakan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Sections -->
+            <div class="upload-sections">
+                <!-- Standard URL Generator -->
+                <div class="upload-section">
+                    <div class="section-header">
+                        <h2>Generate Standard URL</h2>
+                        <span class="badge free">FREE</span>
+                    </div>
+                    <div class="upload-area" id="standardUploadArea">
+                        <div class="upload-icon">📁</div>
+                        <p>Pilih file untuk diunggah dan dapatkan URL standar</p>
+                        <p class="file-info" id="standardFileInfo"></p>
+                        <input type="file" id="standardFile" class="file-input">
+                        <label for="standardFile" class="file-label">Pilih File</label>
+                        <div class="file-restrictions">
+                            <small>Maksimal 10MB • Semua format file didukung</small>
+                        </div>
+                    </div>
+                    <div class="url-generator">
+                        <div class="url-display">
+                            <input type="text" id="standardUrl" class="url-input" placeholder="URL akan muncul di sini setelah generate" readonly>
+                            <button class="generate-btn" id="generateStandard">
+                                <span class="btn-text">Generate</span>
+                                <span class="btn-loading hidden">⏳</span>
+                            </button>
+                        </div>
+                        <div class="upload-progress hidden" id="standardProgress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="standardProgressFill"></div>
+                            </div>
+                            <span class="progress-text" id="standardProgressText">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom URL Generator -->
+                <div class="upload-section">
+                    <div class="section-header">
+                        <h2>Generate Custom URL</h2>
+                        <span class="badge premium" id="customBadge">PREMIUM</span>
+                    </div>
+                    <div class="premium-notice" id="premiumNotice">
+                        <div class="premium-icon">⭐</div>
+                        <p>Upgrade ke Premium untuk menggunakan URL Custom</p>
+                        <button class="premium-upgrade-btn" id="premiumUpgradeBtn">Upgrade Sekarang</button>
+                    </div>
+                    <div class="upload-area hidden" id="customUploadArea">
+                        <div class="upload-icon">⭐</div>
+                        <p>Pilih file untuk diunggah dan dapatkan URL custom</p>
+                        <p class="file-info" id="customFileInfo"></p>
+                        <input type="file" id="customFile" class="file-input">
+                        <label for="customFile" class="file-label">Pilih File</label>
+                        <div class="file-restrictions">
+                            <small>Maksimal 50MB • Semua format file didukung</small>
+                        </div>
+                    </div>
+                    <div class="custom-name-input hidden" id="customNameInput">
+                        <label for="customName">Nama Custom</label>
+                        <input type="text" id="customName" class="form-control" placeholder="contoh: my-file" maxlength="30">
+                        <small class="input-hint">Hanya huruf, angka, dan dash (-). 3-30 karakter.</small>
+                    </div>
+                    <div class="url-generator">
+                        <div class="url-display">
+                            <input type="text" id="customUrl" class="url-input" placeholder="URL akan muncul di sini setelah generate" readonly>
+                            <button class="generate-btn premium" id="generateCustom">
+                                <span class="btn-text">Buy Premium</span>
+                                <span class="btn-loading hidden">⏳</span>
+                            </button>
+                        </div>
+                        <div class="upload-progress hidden" id="customProgress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="customProgressFill"></div>
+                            </div>
+                            <span class="progress-text" id="customProgressText">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Files -->
+            <div class="recent-files-section">
+                <div class="section-header">
+                    <h2>File Terbaru</h2>
+                    <button class="refresh-btn" id="refreshFiles">🔄 Refresh</button>
+                </div>
+                <div class="files-container">
+                    <div class="files-list" id="recentFilesList">
+                        <!-- Files will be loaded here -->
+                    </div>
+                    <div class="empty-state hidden" id="emptyFiles">
+                        <div class="empty-icon">📁</div>
+                        <p>Belum ada file</p>
+                        <p>Unggah file pertama Anda untuk mendapatkan URL</p>
+                    </div>
+                    <div class="loading-state hidden" id="loadingFiles">
+                        <div class="loading-spinner small"></div>
+                        <p>Memuat file...</p>
+                    </div>
+                </div>
+                <div class="pagination" id="filesPagination">
+                    <!-- Pagination will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Premium Modal -->
+    <div id="premiumModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upgrade ke Premium</h3>
+                <button class="modal-close" id="closePremiumModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="premium-plans">
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h4>Free</h4>
+                            <div class="plan-price">Gratis</div>
+                        </div>
+                        <ul class="plan-features">
+                            <li>✅ URL Standar</li>
+                            <li>✅ Penyimpanan 1GB</li>
+                            <li>✅ File berlaku 30 hari</li>
+                            <li>❌ URL Custom</li>
+                            <li>❌ Priority Support</li>
+                        </ul>
+                    </div>
+                    <div class="plan-card premium">
+                        <div class="plan-header">
+                            <h4>Premium</h4>
+                            <div class="plan-price">Rp 50.000<span>/bulan</span></div>
+                        </div>
+                        <ul class="plan-features">
+                            <li>✅ URL Standar & Custom</li>
+                            <li>✅ Penyimpanan 10GB</li>
+                            <li>✅ File berlaku 1 tahun</li>
+                            <li>✅ Priority Support</li>
+                            <li>✅ Upload hingga 50MB</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="premium-actions">
+                    <p>Untuk upgrade, hubungi kami di Telegram:</p>
+                    <a href="https://t.me/cloudmon_premium" class="telegram-btn large" target="_blank">
+                        💬 Hubungi di Telegram
+                    </a>
+                    <small>Setelah pembayaran, admin akan mengaktifkan premium untuk akun Anda</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/dashboard.js"></script>
+</body>
+</html>
